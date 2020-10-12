@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/imag">
+        <file>image/basebackground0.png</file>
+        <file>image/cards.png</file>
+        <file>image/cards_shadow.png</file>
+        <file>image/cardsss.png</file>
+    </qresource>
+</RCC>
