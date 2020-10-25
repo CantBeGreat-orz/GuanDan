@@ -645,7 +645,7 @@ void guanDanGamespace::movePlayAndSkipButton()
 
 void guanDanGamespace::setPlayerPlaceAndWay()
 {
-    playerPlaceAndWay[0][0]=WINHEIGHT-cardHeight*SCALE-20;
+    playerPlaceAndWay[0][0]=WINHEIGHT-cardHeight*SCALE-70;
     playerPlaceAndWay[0][1]=1;
     playerPlaceAndWay[1][0]=20;
     playerPlaceAndWay[1][1]=2;
@@ -1046,6 +1046,25 @@ guanDanGamespace::guanDanGamespace(QWidget *parent) : QWidget(parent)
     huanPaiButtonPoint[1]=new QPoint(playerPlaceAndWay[1][0]+cardWidth*SCALE*4+20,WINHEIGHT/2-50/2);
     huanPaiButtonPoint[2]=new QPoint(WINWIDTH/2-80/2,playerPlaceAndWay[2][0]+cardHeight*SCALE+20);
     huanPaiButtonPoint[3]=new QPoint(playerPlaceAndWay[3][0]-40-80,WINHEIGHT/2-50/2);
+    //设置主牌提示的四个坐标
+    wildCardTipPoint[0]=new QPoint(WINWIDTH/2-50,WINHEIGHT-60);
+    wildCardTipPoint[1]=new QPoint(20,30);
+    wildCardTipPoint[2]=new QPoint(WINWIDTH/2-50,10);
+    wildCardTipPoint[3]=new QPoint(WINWIDTH-120,30);
+    //设置主牌提示图标
+//    QPalette labelPalette;
+//    labelPalette.setColor(QPalette::Background, QColor(255,255,255));
+    QFont font;
+    font.setPointSize(12);
+    font.setBold(true);
+    for(int i=0;i<4;i++){
+        wildCardTip[i]=new QLabel(this);
+        wildCardTip[i]->resize(100,50);
+        wildCardTip[i]->move(*wildCardTipPoint[i]);
+        wildCardTip[i]->setAutoFillBackground(true);
+//        wildCardTip[i]->setPalette(labelPalette);
+        wildCardTip[i]->setFont(font);
+    }
     //设置串行动画组
     for(int i=0;i<4;i++){
         group[i]=new QSequentialAnimationGroup;
@@ -1177,6 +1196,10 @@ void guanDanGamespace::dealCards()
         setAnimationGroup(player[i],i);
     }
     cardPile->raise();
+    QString wildCard[13]={"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
+    for(int i=0;i<4;i++){
+        wildCardTip[i]->setText("主牌为："+wildCard[playerGrade[i]]);
+    }
     background->lower();
 }
 

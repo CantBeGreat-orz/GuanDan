@@ -46,13 +46,14 @@ private:
     QLabel * leftCards;                     //左侧扑克图片
     QLabel * rightCards;                    //右侧扑克图片
     QLabel * upCards;                       //上方扑克图片
+    QLabel * wildCardTip[4];                //主牌提示
 
     QPoint * playCardsButtonPoint[4];       //出牌(抗贡)按钮的四个坐标         player
     QPoint * skipButtonPoint[4];            //跳过（与抗贡）按钮的四个坐标      player
     QPoint * huanPaiButtonPoint[4];         //还牌按钮坐标                    player
     QPoint huanPaiPoint;                    //被还牌的初始坐标
+    QPoint* wildCardTipPoint[4];            //主牌提示的坐标
     QVector<QPoint> jinGongCardPoint;       //进贡牌的初始坐标
-
 
     int gameRound;
     int cardWidth;                          //扑克宽度
@@ -71,7 +72,7 @@ private:
     int huanPaiToWho;                       //需要被还牌的玩家
     int winFlag[4];                         //赛点局数                      player
     int wildCardCount;                      //选中牌中的主牌个数
-    int standAloneCount[4];                 // 单独出列的牌的组数                             player
+    int standAloneCount[4];                 //单独出列的牌的组数                             player
 
     double cardRecord[3];                    //上家打出的牌的牌型与大小
     double curCards[3];                      //现在将打出的牌型与大小
